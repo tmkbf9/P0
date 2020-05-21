@@ -53,9 +53,23 @@ void test_adding_second_node_with_same_first_letter_only_adds_token_to_list() {
   assert(node->getRoot()->tokens.front() == "brian");
 }
 
+void test_adding_second_interior_node_with_same_first_letter() {
+  Node * node = new Node();
+  node->buildTree("middle");
+  node->buildTree("alpha");
+
+  node->buildTree("apple");
+
+  assert(node->getRoot()->left->tokens.size() == 2);
+  assert(node->getRoot()->left->tokens.front() == "alpha");
+  node->getRoot()->left->tokens.pop_front();
+  assert(node->getRoot()->left->tokens.front() == "apple");
+}
+
 int main(int argc, char ** argv) {
   test_adding_root_node_to_tree();
   test_adding_lesser_node_to_tree_adds_node_to_left();
   test_adding_greater_node_to_tree_adds_node_to_right();
   test_adding_second_node_with_same_first_letter_only_adds_token_to_list();
+  test_adding_second_interior_node_with_same_first_letter();
 }
