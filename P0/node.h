@@ -2,41 +2,39 @@
 #ifndef P0_NODE_H
 #define P0_NODE_H
 
-#include <iostream>
-#include <fstream>
-#include <vector>
-#include <cstdlib>
-#include <set>
-#include <queue>
-//#include <stdio.h>
-
-using namespace std;
+#include <list>
+#include <string>
 
 class Node {
-private:
-	struct node {
-		node* left;
-		node* right;
-		char data;
-		std::set<string> myset;
-	};
-
-	node* root;
-
 public:
-	Node() {
-		root = NULL;
-	}
+  struct node {
+    char data;
+    node* left;
+    node* right;
+    std::list<std::string> tokens;
 
-	bool isEmpty() const { return root == NULL; }
-	void buildTree(char);
-	void formatOutput(int);
-	void inorder(node*);
-	void print_inorder();
-	void preorder(node*);
-	void print_preorder();
-	void levelorder(node*);
-	void print_levelorder();
+    node() : left(NULL), right(NULL) {}
+  };
+
+
+  Node() {
+    root = NULL;
+  }
+
+  Node::node * getRoot() { return root; }
+
+  bool isEmpty() const { return root == NULL; }
+  void buildTree(const std::string&);
+  void formatOutput(int);
+  void inorder(node*);
+  void print_inorder();
+  void preorder(node*);
+  void print_preorder();
+  void levelorder(node*);
+  void print_levelorder();
+private:
+  node* root;
+
 
 
 };
