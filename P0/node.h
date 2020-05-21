@@ -35,8 +35,7 @@ public:
 private:
   node* root;
 
-
-
+  node * createNewNode(const std::string & word);
 };
 
 

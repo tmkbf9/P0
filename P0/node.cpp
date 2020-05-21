@@ -10,36 +10,47 @@ using namespace std;
 
 void Node::buildTree(const string & word)
 {
-  node* t = new node;
-  node* parent;
-  t->data = word.at(0);
-  t->left = NULL;
-  t->right = NULL;
-  t->tokens.push_back(word);
-  parent = NULL;
 
   // is this a new tree?
-  if (isEmpty()) root = t;
+  if (isEmpty()) {
+    root = createNewNode(word);
+  }
   else
     {
       //Note: ALL insertions are as leaf nodes
+      node * parent = NULL;
       node* curr = root;
+      char firstLetter = word.at(0);
 
       // Find the Node's parent
       while (curr)
 	{
 	  parent = curr;
-	  if (t->data > curr->data) curr = curr->right;
-	  else curr = curr->left;
+	  if (firstLetter > curr->data) curr = curr->right;
+	  else if(firstLetter < curr->data) curr = curr->left;
+	  else {
+	    curr->tokens.push_back(word);
+	    return;
+	  }
 	}
 
-      if (t->data < parent->data)
-	parent->left = t;
-      else if(t->data > parent->data)
-	parent->right = t;
+      node * newNode = createNewNode(word);
+      if (newNode->data < parent->data)
+	parent->left = newNode;
       else
-	t->tokens.push_back(word);
+	parent->right = newNode;
     }
+}
+
+Node::node * Node::createNewNode(const string & word) {
+  Node::node* t = new Node::node();
+
+  t->data = word.at(0);
+  t->left = NULL;
+  t->right = NULL;
+  t->tokens.push_back(word);
+
+  return t;
 }
 
 void Node::formatOutput(int depth)
