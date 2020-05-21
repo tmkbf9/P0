@@ -22,15 +22,18 @@ public:
     root = NULL;
   }
 
-  node * getRoot() { return root; }
   bool isEmpty() const { return root == NULL; }
 
   void buildTree(const std::string&);
+
   void traverseInOrder(std::ostream & logFile);
   void traversePreOrder(std::ostream & logFile);
   void traverseLevelOrder(std::ostream & logFile);
 
   void formatOutput(int);
+
+  // public only for testing purposes. 
+  node * getRoot() { return root; }
 
 private:
   node* root;

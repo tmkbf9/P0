@@ -64,16 +64,15 @@ void Node::traverseInOrder(ostream & logFile)
 }
 
 void Node::traverseInOrder(Node::node * p, ostream & logFile) {
-  if (p != NULL)
-    {
-      if (p->left) {
-	traverseInOrder(p->left, logFile);
-	cout << " " << p->data << " ";
-      }
+  // if (p != NULL)
+  //   {
+  //     if (p->left) {
+  // 	traverseInOrder(p->left, logFile);
+  //     }
 		
-      logFile << p->data;
-      if (p->right) traverseInOrder(p->right, logFile);
-    }
+  //     logFile << p->data;
+  //     if (p->right) traverseInOrder(p->right, logFile);
+  //   }
 }
 
 void Node::traversePreOrder(ostream & logFile)

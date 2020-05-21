@@ -1,5 +1,5 @@
+#include <assert.h>
 #include "node.h"
-#include "assert.h"
 
 void test_adding_root_node_to_tree() {
   Node * node = new Node();
