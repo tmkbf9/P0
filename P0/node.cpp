@@ -58,16 +58,8 @@ void Node::formatOutput(int depth)
 
 }
 
-void Node::print_inorder()
+void Node::traverseInOrder(ostream & logFile)
 {
-  cout << "Inorder:";
-  traverseInOrder();
-}
-
-void Node::traverseInOrder()
-{
-  ofstream logFile("out.inorder");
-
   traverseInOrder(getRoot(), logFile);
 }
 
@@ -84,16 +76,8 @@ void Node::traverseInOrder(Node::node * p, ostream & logFile) {
     }
 }
 
-void Node::print_preorder()
+void Node::traversePreOrder(ostream & logFile)
 {
-  cout << "Preorder:";
-  traversePreOrder();
-}
-
-void Node::traversePreOrder()
-{
-  ofstream logFile("out.preorder");
-
   traversePreOrder(getRoot(), logFile);
 }
 
@@ -107,15 +91,8 @@ void Node::traversePreOrder(Node::node * p, ostream & logFile) {
     }
 }
 
-void Node::print_levelorder()
+void Node::traverseLevelOrder(ostream & logFile)
 {
-  cout << "Level Order:";
-  traverseLevelOrder();
-}
-
-void Node::traverseLevelOrder()
-{
-  ofstream logFile("out.levelorder");
   traverseLevelOrder(getRoot(), logFile);
 }
 

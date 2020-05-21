@@ -26,14 +26,11 @@ public:
   bool isEmpty() const { return root == NULL; }
 
   void buildTree(const std::string&);
-  void traverseInOrder();
-  void traversePreOrder();
-  void traverseLevelOrder();
+  void traverseInOrder(std::ostream & logFile);
+  void traversePreOrder(std::ostream & logFile);
+  void traverseLevelOrder(std::ostream & logFile);
 
   void formatOutput(int);
-  void print_inorder();
-  void print_preorder();
-  void print_levelorder();
 
 private:
   node* root;
