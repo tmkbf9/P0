@@ -64,6 +64,10 @@ void Node::traverseInOrder(ostream & logFile)
 }
 
 void Node::traverseInOrder(Node::node * p, ostream & logFile) {
+  if(p == NULL) return;
+  
+  logFile << "1 " << p->data << " " << p->tokens.front() << endl;
+  
   // if (p != NULL)
   //   {
   //     if (p->left) {
