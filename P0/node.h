@@ -4,6 +4,7 @@
 
 #include <list>
 #include <string>
+#include <iosfwd>
 
 class Node {
 public:
@@ -21,21 +22,26 @@ public:
     root = NULL;
   }
 
-  Node::node * getRoot() { return root; }
-
+  node * getRoot() { return root; }
   bool isEmpty() const { return root == NULL; }
+
   void buildTree(const std::string&);
+  void traverseInOrder();
+  void traversePreOrder();
+  void traverseLevelOrder();
+
   void formatOutput(int);
-  void inorder(node*);
   void print_inorder();
-  void preorder(node*);
   void print_preorder();
-  void levelorder(node*);
   void print_levelorder();
+
 private:
   node* root;
 
   node * createNewNode(const std::string & word);
+  void traverseInOrder(node * p, std::ostream & os);
+  void traversePreOrder(node * p, std::ostream & os);
+  void traverseLevelOrder(node * p, std::ostream & os);
 };
 
 

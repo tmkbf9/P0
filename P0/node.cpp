@@ -61,57 +61,66 @@ void Node::formatOutput(int depth)
 void Node::print_inorder()
 {
   cout << "Inorder:";
-  inorder(root);
+  traverseInOrder();
 }
 
-void Node::inorder(node* p)
+void Node::traverseInOrder()
 {
-  int depth = 0;
   ofstream logFile("out.inorder");
-  if (p != NULL && logFile.is_open())
+
+  traverseInOrder(getRoot(), logFile);
+}
+
+void Node::traverseInOrder(Node::node * p, ostream & logFile) {
+  if (p != NULL)
     {
       if (p->left) {
-	inorder(p->left);
+	traverseInOrder(p->left, logFile);
 	cout << " " << p->data << " ";
       }
 		
       logFile << p->data;
-      if (p->right) inorder(p->right);
-      logFile.close();
+      if (p->right) traverseInOrder(p->right, logFile);
     }
-  else return;
 }
 
 void Node::print_preorder()
 {
   cout << "Preorder:";
-  preorder(root);
+  traversePreOrder();
 }
 
-void Node::preorder(node* p)
+void Node::traversePreOrder()
 {
   ofstream logFile("out.preorder");
-  if (p != NULL && logFile.is_open())
+
+  traversePreOrder(getRoot(), logFile);
+}
+
+void Node::traversePreOrder(Node::node * p, ostream & logFile) {
+  if (p != NULL)
     {
       cout << " " << p->data << " ";
       logFile << p->data;
-      if (p->left) preorder(p->left);
-      if (p->right) preorder(p->right);
-      logFile.close();
+      if (p->left) traversePreOrder(p->left, logFile);
+      if (p->right) traversePreOrder(p->right, logFile);
     }
-  else return;
 }
 
 void Node::print_levelorder()
 {
   cout << "Level Order:";
-  levelorder(root);
+  traverseLevelOrder();
 }
 
-void Node::levelorder(node* p)
+void Node::traverseLevelOrder()
 {
   ofstream logFile("out.levelorder");
-  if (p != NULL && logFile.is_open())
+  traverseLevelOrder(getRoot(), logFile);
+}
+
+void Node::traverseLevelOrder(Node::node * p, ostream & logFile) {
+  if (p != NULL)
     {	
       queue<node*> que;
       que.push(p);
