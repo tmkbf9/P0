@@ -17,10 +17,7 @@ public:
     node() : left(NULL), right(NULL) {}
   };
 
-
-  Node() {
-    root = NULL;
-  }
+  Node() : root(NULL) {}
 
   bool isEmpty() const { return root == NULL; }
 
@@ -30,8 +27,6 @@ public:
   void traversePreOrder(std::ostream & logFile);
   void traverseLevelOrder(std::ostream & logFile);
 
-  void formatOutput(int);
-
   // public only for testing purposes. 
   node * getRoot() { return root; }
 
@@ -39,6 +34,7 @@ private:
   node* root;
 
   node * createNewNode(const std::string & word);
+
   void traverseInOrder(node * p, std::ostream & os, int depth);
   void traversePreOrder(node * p, std::ostream & os);
   void traverseLevelOrder(node * p, std::ostream & os);

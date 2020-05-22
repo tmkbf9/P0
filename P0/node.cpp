@@ -53,11 +53,6 @@ Node::node * Node::createNewNode(const string & word) {
   return t;
 }
 
-void Node::formatOutput(int depth)
-{
-
-}
-
 void Node::traverseInOrder(ostream & logFile)
 {
   traverseInOrder(getRoot(), logFile, 0);
@@ -95,16 +90,6 @@ void Node::traverseInOrder(Node::node * p, ostream & logFile, int depth) {
   if(p->right != NULL) {
     traverseInOrder(p->right, logFile, depth + 1);
   }
-
-  // if (p != NULL)
-  //   {
-  //     if (p->left) {
-  // 	traverseInOrder(p->left, logFile);
-  //     }
-		
-  //     logFile << p->data;
-  //     if (p->right) traverseInOrder(p->right, logFile);
-  //   }
 }
 
 void Node::traversePreOrder(ostream & logFile)

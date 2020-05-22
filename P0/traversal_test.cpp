@@ -78,12 +78,32 @@ void test_traversing_in_order_to_right_should_output_both() {
   assert(output == expectedOutput);
 }
 
+void test_traversing_in_order_with_both_side_child_nodes_outputs_all() {
+  ostringstream logFile;
+  
+  Node * node = new Node();
+  node->buildTree("bpple");
+  node->buildTree("cpple");
+  node->buildTree("apple");
+  
+  node->traverseInOrder(logFile);
+
+  string output = logFile.str();
+
+  ostringstream ostr;
+  ostr << "  2 a apple \n" << "1 b bpple \n" << "  2 c cpple \n";
+  string expectedOutput = ostr.str();
+
+  assert(output == expectedOutput);
+}
+
 int main(int argc, char ** argv) {
   test_traversing_in_order_empty_tree_should_output_nothing();
   test_traversing_in_order_root_should_output_root_data();
   test_adding_same_node_twice_at_root_displays_strings_in_FIFO_order();
   test_traversing_in_order_to_left_should_output_both();
   test_traversing_in_order_to_right_should_output_both();  
+  test_traversing_in_order_with_both_side_child_nodes_outputs_all();
 
   exit(0);
 }
