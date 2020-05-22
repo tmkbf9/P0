@@ -99,38 +99,58 @@ void Node::traversePreOrder(ostream& logFile)
 
 void Node::traversePreOrder(Node::node* p, ostream& logFile, int depth) {
     if (p == NULL) return;
-    {
-        logFile << blanks(depth) << depth + 1 << " " << p->data << " " << join(p->tokens) << endl;
-        if (p->left != NULL) traversePreOrder(p->left, logFile, depth + 1);
-        if (p->right != NULL) traversePreOrder(p->right, logFile, depth + 1);
+    
+    logFile << blanks(depth) << depth + 1 << " " << p->data << " " << join(p->tokens) << endl;
+
+    if (p->left != NULL) {
+        traversePreOrder(p->left, logFile, depth + 1);
     }
+    if (p->right != NULL) { 
+        traversePreOrder(p->right, logFile, depth + 1); 
+    }
+
 }
 
 void Node::traverseLevelOrder(ostream& logFile)
 {
-    traverseLevelOrder(getRoot(), logFile);
+    int h = height(getRoot());
+    int i;
+    for (i = 1; i <= h; i++) {
+        traverseLevelOrder(getRoot(), logFile, i, i);
+    }
+    
 }
 
-void Node::traverseLevelOrder(Node::node* p, ostream& logFile) {
-    if (p != NULL)
-    {
-        queue<node*> que;
-        que.push(p);
-        while (que.empty() == false)
-        {
-            int count = que.size();
-            while (count > 0)
-            {
-                node* node = que.front();
-                cout << " " << node->data << " ";
-                logFile << node->data;
-                que.pop();
-                if (node->left != NULL)
-                    que.push(node->left);
-                if (node->right != NULL)
-                    que.push(node->right);
-                count--;
-            }
+void Node::traverseLevelOrder(Node::node* p, ostream& logFile, int level, int depth) {
+        if (p == NULL) return;
+        if (level == 1) {
+            logFile << blanks(depth - 1) << depth << " " << p->data << " " << join(p->tokens) << endl;
         }
-    }
+        else if (level > 1)
+        {
+            traverseLevelOrder(p->left, logFile, level - 1, depth);
+            traverseLevelOrder(p->right, logFile, level - 1, depth);
+        }   
 }
+
+
+
+    /* Compute the "height" of a tree -- the number of
+    nodes along the longest path from the root node
+    down to the farthest leaf node.*/
+ int Node::height(Node::node* p) {
+     if (p == NULL) {
+         return 0;
+     }
+     else
+     {
+            /* compute  height of each subtree */
+            int leftHeight = height(p->left);
+            int rightHeight = height(p->right);
+            /* use the larger one */
+            if (leftHeight > rightHeight)
+                return(leftHeight + 1);
+            else return(rightHeight + 1);
+     }
+ }
+    

@@ -37,7 +37,9 @@ private:
 
   void traverseInOrder(node * p, std::ostream & os, int depth);
   void traversePreOrder(node * p, std::ostream & os, int depth);
-  void traverseLevelOrder(node * p, std::ostream & os);
+  void traverseLevelOrder(node * p, std::ostream & os, int level, int depth);
+
+  int height(node * p);
 };
 
 
