@@ -60,7 +60,7 @@ void Node::formatOutput(int depth)
 
 void Node::traverseInOrder(ostream & logFile)
 {
-  traverseInOrder(getRoot(), logFile);
+  traverseInOrder(getRoot(), logFile, 0);
 }
 
 string join(const list<string> & tokens) {
@@ -73,12 +73,29 @@ string join(const list<string> & tokens) {
   return concatenatedTokens;
 }
 
-void Node::traverseInOrder(Node::node * p, ostream & logFile) {
+string blanks(int count) {
+  string blanks = "";
+
+  for(int i = 0; i < count; i++) {
+    blanks += "  ";
+  }
+
+  return blanks;
+}
+
+void Node::traverseInOrder(Node::node * p, ostream & logFile, int depth) {
   if(p == NULL) return;
   
-  string concatenatedTokens = join(p->tokens);
-  logFile << "1 " << p->data << " " << concatenatedTokens << endl;
-  
+  if(p->left != NULL) {
+    traverseInOrder(p->left, logFile, depth + 1);
+  }
+
+  logFile << blanks(depth) << depth + 1 << " " << p->data << " " << join(p->tokens) << endl;
+
+  if(p->right != NULL) {
+    traverseInOrder(p->right, logFile, depth + 1);
+  }
+
   // if (p != NULL)
   //   {
   //     if (p->left) {
