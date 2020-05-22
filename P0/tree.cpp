@@ -135,9 +135,7 @@ void Node::traverseLevelOrder(Node::node* p, ostream& logFile, int level, int de
 
 
 
-    /* Compute the "height" of a tree -- the number of
-    nodes along the longest path from the root node
-    down to the farthest leaf node.*/
+
  int Node::height(Node::node* p) {
      if (p == NULL) {
          return 0;

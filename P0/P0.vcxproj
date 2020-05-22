@@ -121,7 +121,7 @@
     <ClInclude Include="node.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="test_level_order.cpp" />
+    <ClCompile Include="test_validation.cpp" />
     <ClCompile Include="tree.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
