@@ -63,10 +63,21 @@ void Node::traverseInOrder(ostream & logFile)
   traverseInOrder(getRoot(), logFile);
 }
 
+string join(const list<string> & tokens) {
+  string concatenatedTokens;
+  list<string>::const_iterator it;
+  for(it = tokens.begin(); it != tokens.end(); ++it) {
+    concatenatedTokens += (*it + " ");
+  }
+
+  return concatenatedTokens;
+}
+
 void Node::traverseInOrder(Node::node * p, ostream & logFile) {
   if(p == NULL) return;
   
-  logFile << "1 " << p->data << " " << p->tokens.front() << endl;
+  string concatenatedTokens = join(p->tokens);
+  logFile << "1 " << p->data << " " << concatenatedTokens << endl;
   
   // if (p != NULL)
   //   {
@@ -87,7 +98,6 @@ void Node::traversePreOrder(ostream & logFile)
 void Node::traversePreOrder(Node::node * p, ostream & logFile) {
   if (p != NULL)
     {
-      cout << " " << p->data << " ";
       logFile << p->data;
       if (p->left) traversePreOrder(p->left, logFile);
       if (p->right) traversePreOrder(p->right, logFile);
