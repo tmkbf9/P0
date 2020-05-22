@@ -116,7 +116,7 @@ void Node::traverseLevelOrder(ostream& logFile)
     int h = height(getRoot());
     int i;
     for (i = 1; i <= h; i++) {
-        traverseLevelOrder(getRoot(), logFile, i, i);
+        traverseLevelOrder(getRoot(), logFile, i, i - 1);
     }
     
 }
@@ -124,7 +124,7 @@ void Node::traverseLevelOrder(ostream& logFile)
 void Node::traverseLevelOrder(Node::node* p, ostream& logFile, int level, int depth) {
         if (p == NULL) return;
         if (level == 1) {
-            logFile << blanks(depth - 1) << depth << " " << p->data << " " << join(p->tokens) << endl;
+            logFile << blanks(depth) << depth + 1 << " " << p->data << " " << join(p->tokens) << endl;
         }
         else if (level > 1)
         {
