@@ -120,7 +120,7 @@ void Node::traverseLevelOrder(ostream& logFile)
     }
     
 }
-
+/* Print nodes at a given level */
 void Node::traverseLevelOrder(Node::node* p, ostream& logFile, int level, int depth) {
         if (p == NULL) return;
         if (level == 1) {
