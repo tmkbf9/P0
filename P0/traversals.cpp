@@ -30,62 +30,60 @@ namespace {
 
 void Node::traverseInOrder(ostream& logFile)
 {
-    traverseInOrder(getRoot(), logFile, 0);
+  traverseInOrder(getRoot(), logFile, 0);
 }
 
 void Node::traverseInOrder(node* p, ostream& logFile, int depth) {
-    if (p == NULL) return;
+  if (p == NULL) return;
 
-    if (p->left != NULL) {
-        traverseInOrder(p->left, logFile, depth + 1);
-    }
+  if (p->left != NULL) {
+    traverseInOrder(p->left, logFile, depth + 1);
+  }
 
-    logFile << blanks(depth) << depth + 1 << " " << p->data << " " << join(p->tokens) << endl;
+  logFile << blanks(depth) << depth + 1 << " " << p->data << " " << join(p->tokens) << endl;
 
-    if (p->right != NULL) {
-        traverseInOrder(p->right, logFile, depth + 1);
-    }
+  if (p->right != NULL) {
+    traverseInOrder(p->right, logFile, depth + 1);
+  }
 }
 
 void Node::traversePreOrder(ostream& logFile)
 {
-    traversePreOrder(getRoot(), logFile, 0);
+  traversePreOrder(getRoot(), logFile, 0);
 }
 
 void Node::traversePreOrder(node* p, ostream& logFile, int depth) {
-    if (p == NULL) return;
+  if (p == NULL) return;
     
-    logFile << blanks(depth) << depth + 1 << " " << p->data << " " << join(p->tokens) << endl;
+  logFile << blanks(depth) << depth + 1 << " " << p->data << " " << join(p->tokens) << endl;
 
-    if (p->left != NULL) {
-        traversePreOrder(p->left, logFile, depth + 1);
-    }
-    if (p->right != NULL) { 
-        traversePreOrder(p->right, logFile, depth + 1); 
-    }
+  if (p->left != NULL) {
+    traversePreOrder(p->left, logFile, depth + 1);
+  }
+  if (p->right != NULL) { 
+    traversePreOrder(p->right, logFile, depth + 1); 
+  }
 
 }
 
 void Node::traverseLevelOrder(ostream& logFile)
 {
-    int h = height(getRoot());
-    int i;
-    for (i = 1; i <= h; i++) {
-        traverseLevelOrder(getRoot(), logFile, i, i - 1);
-    }
-    
+  int h = height(getRoot());
+  int i;
+  for (i = 1; i <= h; i++) {
+    traverseLevelOrder(getRoot(), logFile, i, i - 1);
+  }
 }
 
 void Node::traverseLevelOrder(node* p, ostream& logFile, int level, int depth) {
-        if (p == NULL) return;
-        if (level == 1) {
-            logFile << blanks(depth) << depth + 1 << " " << p->data << " " << join(p->tokens) << endl;
-        }
-        else if (level > 1)
-        {
-            traverseLevelOrder(p->left, logFile, level - 1, depth);
-            traverseLevelOrder(p->right, logFile, level - 1, depth);
-        }   
+  if (p == NULL) return;
+  if (level == 1) {
+    logFile << blanks(depth) << depth + 1 << " " << p->data << " " << join(p->tokens) << endl;
+  }
+  else if (level > 1) {
+      traverseLevelOrder(p->left, logFile, level - 1, depth);
+      traverseLevelOrder(p->right, logFile, level - 1, depth);
+  }   
 }
 
 int Node::height(node* p) {
@@ -97,4 +95,4 @@ int Node::height(node* p) {
   return (leftSubtreeHeight > rightSubtreeHeight) 
     ? leftSubtreeHeight + 1 
     : rightSubtreeHeight + 1;
- }
+}

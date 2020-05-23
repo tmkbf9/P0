@@ -1,7 +1,12 @@
 #include <iostream>
 #include <fstream>
+#include <string>
 
+#include "validation.h"
 #include "node.h"
+#include "buildTree.h"
+
+using namespace std;
 
 int main(int argc, char* argv[]) {
 
@@ -9,6 +14,7 @@ int main(int argc, char* argv[]) {
 
   // variable for handling multiple filenames
   string filename;
+  string outputFileName("out");
 
   // sort command line arguments
   // get keyboard input or pipe and write to file
@@ -33,11 +39,8 @@ int main(int argc, char* argv[]) {
 
   }
   else if (argc == 2) {
-
-    // argv[1] is filename (second param)
     filename = argv[1];
-    // makes filename a valid file in directory
-    //	see README
+    outputFileName = filename;
   }
   else if (argc > 2) {
     cerr << "Too many command line arguments." << endl;
@@ -48,31 +51,35 @@ int main(int argc, char* argv[]) {
   string word;
   char letter;
 
-  ifstream outFile(filename.c_str());
-  if (outFile.is_open()) {
-    while (outFile >> word) {
+  ifstream tokenFile(filename.c_str());
+  if (tokenFile.is_open()) {
+    while (tokenFile >> word) {
 
-      boolean isValid = validateInputString(word); // TODO
-      if(isValid == false) {
+      bool validWord = isValid(word); // TODO
+      if(validWord == false) {
 	cerr << "Input string of " << word << " has invalid characters, aborting." << endl;
 	exit(1);
       }
       
-      letter = word.at(0);
-      node.buildTree(letter);
+      node.buildTree(word);
     }
-    outFile.close();
+    tokenFile.close();
   }
   else cout << "Unable to open file";
 
   //determine which output files to make
 
-  cout << endl << endl;
-  node.print_inorder();
-  cout << endl;
-  node.print_preorder();
-  cout << endl;
-	
+  ofstream inOrderOutputFile(outputFileName + ".inorder");
+  ofstream preOrderOutputFile(outputFileName + ".preorder");
+  ofstream levelOrderOutputFile(outputFileName + ".levelorder");
+
+  node.traverseInOrder(inOrderOutputFile);
+  node.traversePreOrder(preOrderOutputFile);
+  node.traverseLevelOrder(levelOrderOutputFile);
+
+  inOrderOutputFile.close();
+  preOrderOutputFile.close();
+  levelOrderOutputFile.close();
 
   return 0;
 }

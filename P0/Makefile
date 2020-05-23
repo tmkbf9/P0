@@ -14,7 +14,7 @@ clean:
 
 all: P0 test
 
-P0: buildTree.o traversals.o main.o
+P0: buildTree.o traversals.o main.o validation.o
 	$(GCC) -o $@ $^
 
 test: traversal_test node_test inOrderTest test_level_order test_validation
