@@ -89,14 +89,11 @@ void test_traversing_in_order_with_both_side_child_nodes_outputs_all() {
     node->traversePreOrder(logFile);
 
     string output = logFile.str();
-    cout << output << endl;
 
     ostringstream ostr;
     ostr << "1 b bpple \n" << "  2 a apple \n"  << "  2 c cpple \n";
     string expectedOutput = ostr.str();
-    cout << expectedOutput << endl;
-
-
+  
     assert(output == expectedOutput);
 }
 
