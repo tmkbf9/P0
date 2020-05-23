@@ -53,7 +53,7 @@ int main(int argc, char* argv[]) {
     while (outFile >> word) {
 
       boolean isValid = validateInputString(word); // TODO
-      if(isValue == false) {
+      if(isValid == false) {
 	cerr << "Input string of " << word << " has invalid characters, aborting." << endl;
 	exit(1);
       }

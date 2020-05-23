@@ -8,6 +8,28 @@
 
 using namespace std;
 
+namespace {
+  string join(const list<string>& tokens) {
+    string concatenatedTokens;
+    list<string>::const_iterator it;
+    for (it = tokens.begin(); it != tokens.end(); ++it) {
+      concatenatedTokens += (*it + " ");
+    }
+    
+    return concatenatedTokens;
+  }
+  
+  string blanks(int count) {
+    string blanks = "";
+	
+    for (int i = 0; i < count; i++) {
+      blanks += "  ";
+    }
+    
+    return blanks;
+  }
+}
+
 void Node::buildTree(const string& word)
 {
 
@@ -58,26 +80,6 @@ void Node::traverseInOrder(ostream& logFile)
     traverseInOrder(getRoot(), logFile, 0);
 }
 
-string join(const list<string>& tokens) {
-    string concatenatedTokens;
-    list<string>::const_iterator it;
-    for (it = tokens.begin(); it != tokens.end(); ++it) {
-        concatenatedTokens += (*it + " ");
-    }
-
-    return concatenatedTokens;
-}
-
-string blanks(int count) {
-    string blanks = "";
-
-    for (int i = 0; i < count; i++) {
-        blanks += "  ";
-    }
-
-    return blanks;
-}
-
 void Node::traverseInOrder(Node::node* p, ostream& logFile, int depth) {
     if (p == NULL) return;
 
@@ -120,7 +122,7 @@ void Node::traverseLevelOrder(ostream& logFile)
     }
     
 }
-/* Print nodes at a given level */
+
 void Node::traverseLevelOrder(Node::node* p, ostream& logFile, int level, int depth) {
         if (p == NULL) return;
         if (level == 1) {
@@ -133,22 +135,14 @@ void Node::traverseLevelOrder(Node::node* p, ostream& logFile, int level, int de
         }   
 }
 
+int Node::height(Node::node* p) {
+  if(p == NULL) return 0;
 
+  int leftSubtreeHeight = height(p->left);
+  int rightSubtreeHeight = height(p->right);
 
-
- int Node::height(Node::node* p) {
-     if (p == NULL) {
-         return 0;
-     }
-     else
-     {
-            /* compute  height of each subtree */
-            int leftHeight = height(p->left);
-            int rightHeight = height(p->right);
-            /* use the larger one */
-            if (leftHeight > rightHeight)
-                return(leftHeight + 1);
-            else return(rightHeight + 1);
-     }
+  return (leftSubtreeHeight > rightSubtreeHeight) 
+    ? leftSubtreeHeight + 1 
+    : rightSubtreeHeight + 1;
  }
     

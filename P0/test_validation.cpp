@@ -1,24 +1,10 @@
 #include <assert.h>
 #include <sstream>
 #include <iostream>
-#include <stdio.h>
-#include <ctype.h>
-#include <string>
+
+#include "validation.h"
 
 using namespace std;
-
-bool isValid(string);
-
-bool isValid(string input) {
-    if (input.empty() ) return true;
-        for (unsigned i = 0; i < input.length(); ++i) {
-            if (!isalpha(input.at(i)) || !islower(input.at(i))) {
-                return false;
-            }
-        }
-    return true;
-}
-
 
 void test_validation_empty_input() {
     string input;
