@@ -8,6 +8,7 @@ RM := rm
 	$(GCC) -c $(CFLAGS) $(CPPFLAGS) -o $@ $<
 
 clean:
+	$(RM) -f P0
 	$(RM) -f traversal_test test_validation test_level_order inOrderTest node_test
 	$(RM) -f *.o
 	$(RM) -f *~
