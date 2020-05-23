@@ -1,6 +1,8 @@
 *~
-traversal_test
-node_test
 main
 out.*
 tokens.dat
+*.o
+*_test
+test_*
+inOrderTest
