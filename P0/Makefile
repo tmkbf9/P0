@@ -14,24 +14,24 @@ clean:
 
 all: P0 test
 
-P0: tree.o main.o
+P0: buildTree.o traversals.o main.o
 	$(GCC) -o $@ $^
 
 test: traversal_test node_test inOrderTest test_level_order test_validation
 
-traversal_test: traversal_test.o tree.o
+traversal_test: traversal_test.o buildTree.o traversals.o
 	$(GCC) -o $@ $^
 	./traversal_test
 
-node_test: node_test.o tree.o
+node_test: node_test.o buildTree.o traversals.o
 	$(GCC) -o $@ $^
 	./node_test
 
-inOrderTest: inOrderTest.o tree.o
+inOrderTest: inOrderTest.o buildTree.o traversals.o
 	$(GCC) -o $@ $^
 	./inOrderTest
 
-test_level_order: test_level_order.o tree.o
+test_level_order: test_level_order.o buildTree.o traversals.o
 	$(GCC) -o $@ $^
 	./test_level_order
 

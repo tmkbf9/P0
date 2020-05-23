@@ -1,4 +1,6 @@
 #include <assert.h>
+
+#include "buildTree.h"
 #include "node.h"
 
 void test_adding_root_node_to_tree() {

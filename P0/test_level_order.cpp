@@ -3,6 +3,7 @@
 #include <iostream>
 
 #include "node.h"
+#include "buildTree.h"
 
 using namespace std;
 

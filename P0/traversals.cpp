@@ -1,10 +1,8 @@
 #include <iostream>
-#include <fstream>
-#include <vector>
-#include <cstdlib>
-#include <queue>
+#include <string>
 
 #include "node.h"
+#include "buildTree.h"
 
 using namespace std;
 
@@ -30,57 +28,12 @@ namespace {
   }
 }
 
-void Node::buildTree(const string& word)
-{
-
-    // is this a new tree?
-    if (isEmpty()) {
-        root = createNewNode(word);
-    }
-    else
-    {
-        //Note: ALL insertions are as leaf nodes
-        node* parent = NULL;
-        node* curr = root;
-        char firstLetter = word.at(0);
-
-        // Find the Node's parent
-        while (curr)
-        {
-            parent = curr;
-            if (firstLetter > curr->data) curr = curr->right;
-            else if (firstLetter < curr->data) curr = curr->left;
-            else {
-                curr->tokens.push_back(word);
-                return;
-            }
-        }
-
-        node* newNode = createNewNode(word);
-        if (newNode->data < parent->data)
-            parent->left = newNode;
-        else
-            parent->right = newNode;
-    }
-}
-
-Node::node* Node::createNewNode(const string& word) {
-    Node::node* t = new Node::node();
-
-    t->data = word.at(0);
-    t->left = NULL;
-    t->right = NULL;
-    t->tokens.push_back(word);
-
-    return t;
-}
-
 void Node::traverseInOrder(ostream& logFile)
 {
     traverseInOrder(getRoot(), logFile, 0);
 }
 
-void Node::traverseInOrder(Node::node* p, ostream& logFile, int depth) {
+void Node::traverseInOrder(node* p, ostream& logFile, int depth) {
     if (p == NULL) return;
 
     if (p->left != NULL) {
@@ -99,7 +52,7 @@ void Node::traversePreOrder(ostream& logFile)
     traversePreOrder(getRoot(), logFile, 0);
 }
 
-void Node::traversePreOrder(Node::node* p, ostream& logFile, int depth) {
+void Node::traversePreOrder(node* p, ostream& logFile, int depth) {
     if (p == NULL) return;
     
     logFile << blanks(depth) << depth + 1 << " " << p->data << " " << join(p->tokens) << endl;
@@ -123,7 +76,7 @@ void Node::traverseLevelOrder(ostream& logFile)
     
 }
 
-void Node::traverseLevelOrder(Node::node* p, ostream& logFile, int level, int depth) {
+void Node::traverseLevelOrder(node* p, ostream& logFile, int level, int depth) {
         if (p == NULL) return;
         if (level == 1) {
             logFile << blanks(depth) << depth + 1 << " " << p->data << " " << join(p->tokens) << endl;
@@ -135,7 +88,7 @@ void Node::traverseLevelOrder(Node::node* p, ostream& logFile, int level, int de
         }   
 }
 
-int Node::height(Node::node* p) {
+int Node::height(node* p) {
   if(p == NULL) return 0;
 
   int leftSubtreeHeight = height(p->left);
@@ -145,4 +98,3 @@ int Node::height(Node::node* p) {
     ? leftSubtreeHeight + 1 
     : rightSubtreeHeight + 1;
  }
-    
