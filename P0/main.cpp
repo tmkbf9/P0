@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <stdlib.h>
 
 #include "validation.h"
 #include "node.h"
@@ -58,7 +59,7 @@ int main(int argc, char* argv[]) {
       bool validWord = isValid(word); // TODO
       if(validWord == false) {
 	cerr << "Input string of " << word << " has invalid characters, aborting." << endl;
-	exit(1);
+	exit(EXIT_FAILURE);
       }
       
       node.buildTree(word);
@@ -69,9 +70,9 @@ int main(int argc, char* argv[]) {
 
   //determine which output files to make
 
-  ofstream inOrderOutputFile(outputFileName + ".inorder");
-  ofstream preOrderOutputFile(outputFileName + ".preorder");
-  ofstream levelOrderOutputFile(outputFileName + ".levelorder");
+  ofstream inOrderOutputFile((outputFileName + ".inorder").c_str());
+  ofstream preOrderOutputFile((outputFileName + ".preorder").c_str());
+  ofstream levelOrderOutputFile((outputFileName + ".levelorder").c_str());
 
   node.traverseInOrder(inOrderOutputFile);
   node.traversePreOrder(preOrderOutputFile);
@@ -81,5 +82,5 @@ int main(int argc, char* argv[]) {
   preOrderOutputFile.close();
   levelOrderOutputFile.close();
 
-  return 0;
+  exit(EXIT_SUCCESS);
 }

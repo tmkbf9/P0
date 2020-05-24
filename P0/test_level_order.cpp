@@ -105,5 +105,6 @@ int main(int argc, char** argv) {
     test_traversing_level_order_to_left_should_output_both();
     test_traversing_level_order_to_right_should_output_both();
     test_traversing_in_order_with_both_side_child_nodes_outputs_all();
-    exit(0);
+
+    return 0;    
 }

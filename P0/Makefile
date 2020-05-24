@@ -2,6 +2,7 @@
 
 GCC := g++
 CFLAGS := -g
+CPPFLAGS := --std=c++98
 RM := rm
 
 .cpp.o:
@@ -12,6 +13,7 @@ clean:
 	$(RM) -f traversal_test test_validation test_level_order inOrderTest node_test
 	$(RM) -f *.o
 	$(RM) -f *~
+	$(RM) -f out.*order
 
 all: P0 test
 

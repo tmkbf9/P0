@@ -60,6 +60,6 @@ int main(int argc, char** argv) {
     test_validation_one_number_returns_invalid();
     test_validation_two_lowercase_letters_returns_valid();
     test_validation_one_lowercase_letter_followed_by_an_invalid_char_returns_invalid();
-
-	exit(0);
+    
+    return 0;
 }
